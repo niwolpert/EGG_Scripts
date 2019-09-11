@@ -32,8 +32,8 @@ clear all; close all;
 clc
 
 % specify location of scripts and data file
-script_path = 'C:\Users\Etudiant\Documents\Methodological EGG paper\Github Scripts\';
-file_name   = 'EGG_raw_example3.mat';
+script_path = '';
+file_name   = 'EGG_raw_example1.mat';
 
 % Load EGG raw data.
 % These should be in fieldtrip format (e.g. output of 'ft_preprocessing'), 
