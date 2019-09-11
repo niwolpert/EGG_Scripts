@@ -1,14 +1,10 @@
 function show_prop_normogastria(EGG_filter)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Copyright Nicolai Wolpert, 2019%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Usage: show_prop_normogastria(EGG_filter)
-% This function creates a plot with a histogram of cycle duration, with 
-% dottee red lines marking the mean +/- 3 standard deviations.
+% This function plots the histogram of cycle duration, with 
+% dotted red lines marking the mean +/- 3 standard deviations.
 %
-%Inputs:
-%   -EGG_filter: The filtered EGG signal (output from 'compute_filter_EGG
-%
+% Inputs
+%     EGG_filter  filtered EGG signal (output from 'compute_filter_EGG.m')
+% 
 % This function was written in Matlab version R2017b.
 %
 % This function make use of the fieldtrip toolbox, version 20170315
@@ -20,8 +16,7 @@ function show_prop_normogastria(EGG_filter)
 % Neuroscience, vol. 2011, Article ID 156869, 9 pages, 2011. 
 % doi:10.1155/2011/156869.
 %
-% Copyright (C) 2009, Laboratoire de Neurosciences Cognitives, Nicolai 
-% Wolpert
+% Copyright (C) 2009, Laboratoire de Neurosciences Cognitives, Nicolai Wolpert
 % Email: Nicolai.Wolpert@ens.fr
 % 
 % DISCLAIMER:
@@ -37,11 +32,11 @@ range_normogastria = [15 30];
 
 % compute cycle lengths in seconds
 edges_cycles_samples = find(diff(EGG_filter.trial{1}(2,:))<-1);
-edges_cycles_tmstp = EGG_filter.time{1}(edges_cycles_samples);
-lengths_cycles = diff(edges_cycles_tmstp);
+edges_cycles_tmstp   = EGG_filter.time{1}(edges_cycles_samples);
+lengths_cycles       = diff(edges_cycles_tmstp);
 
 % compute proportion of normogastria
-ind_outside = [find(lengths_cycles<range_normogastria(1)) find(range_normogastria>range_normogastria(2))];
+ind_outside       = [find(lengths_cycles<range_normogastria(1)) find(range_normogastria>range_normogastria(2))];
 prop_normogastria = (length(lengths_cycles)-length(ind_outside))/length(lengths_cycles)*100;
 
 % plot distribution of cycle lengths

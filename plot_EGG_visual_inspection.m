@@ -1,16 +1,12 @@
 function figure_EGG_filtered = plot_EGG_visual_inspection(EGG_filter)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Copyright Nicolai Wolpert, 2019%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Usage: [figure_EGG_filtered] = plot_EGG_visual_inspection(EGG_filter)
-%Plots the EGG including raw signal, filtered signal, phase and amplitude
+% This function plots the EGG raw signal, filtered signal, phase and amplitude
 %
-%Inputs:
-%   -EGG_filter: The filtered EGG signal (output from 'compute_filter_EGG')
-%
-%Outputs:
-%   -figure_EGG_filtered: Figure showing the raw and filtered signal, phase
-%   and amplitude
+% Inputs
+%     EGG_filter          filtered EGG signal (output from 'compute_filter_EGG.m')
+% 
+% Outputs
+%     figure_EGG_filtered figure showing EGG raw signal, filtered signal, phase
+%                         and amplitude
 %
 % This function was written in Matlab version R2017b.
 %
@@ -23,8 +19,7 @@ function figure_EGG_filtered = plot_EGG_visual_inspection(EGG_filter)
 % Neuroscience, vol. 2011, Article ID 156869, 9 pages, 2011. 
 % doi:10.1155/2011/156869.
 %
-% Copyright (C) 2009, Laboratoire de Neurosciences Cognitives, Nicolai 
-% Wolpert
+% Copyright (C) 2009, Laboratoire de Neurosciences Cognitives, Nicolai Wolpert
 % Email: Nicolai.Wolpert@ens.fr
 % 
 % DISCLAIMER:
@@ -36,37 +31,43 @@ function figure_EGG_filtered = plot_EGG_visual_inspection(EGG_filter)
 
 figure_EGG_filtered = figure('units','normalized','outerposition',[0 0 1 1]); set(gcf,'color','w');
 subplot(5,1,1:2);
-% mean-center EGG signal
+% mean-centered EGG signal
 EGG_filter.trial{1}(1, :) = EGG_filter.trial{1}(1, :)-mean(EGG_filter.trial{1}(1, :));
 plot(EGG_filter.time{1}, EGG_filter.trial{1}(1, :));
-xlim([EGG_filter.time{1}(1) EGG_filter.time{1}(end)]);
 ax = gca;
-ax.FontSize = 16;
-ylabel('µV', 'FontSize', 17);
+ax.XLim            = [EGG_filter.time{1}(1) EGG_filter.time{1}(end)];
+ax.FontSize        = 16;
+ax.YLabel.String   = 'µV';
+ax.YLabel.FontSize = 17;
 title('Raw signal', 'FontSize', 25);
+
 subplot(5,1,3);
 plot(EGG_filter.time{1}, EGG_filter.trial{1}(4, :), 'g', 'LineWidth', 1);
-xlim([EGG_filter.time{1}(1) EGG_filter.time{1}(end)]);
 ax = gca;
-ax.FontSize = 16;
-xlabel('Time (seconds)', 'FontSize', 17);
-ylabel('µV', 'FontSize', 17);
-title('Filtered', 'FontSize', 25);
+ax.XLim            = [EGG_filter.time{1}(1) EGG_filter.time{1}(end)];
+ax.FontSize        = 16;
+ax.YLabel.String   = 'µV';
+ax.YLabel.FontSize = 17;
+title('Raw signal', 'FontSize', 25);
+
 subplot(5,1,4);
 plot(EGG_filter.time{1}, EGG_filter.trial{1}(2, :), 'g', 'LineWidth', 1);
-xlim([EGG_filter.time{1}(1) EGG_filter.time{1}(end)]);
 ax = gca;
-ax.FontSize = 16;
-xlabel('Time (seconds)', 'FontSize', 17);
-ylabel('Phase (rad)', 'FontSize', 17);
+ax.XLim            = [EGG_filter.time{1}(1) EGG_filter.time{1}(end)];
+ax.FontSize        = 16;
+ax.YLabel.String   = 'Phase (rad)';
+ax.YLabel.FontSize = 17;
 title('Phase', 'FontSize', 25);
+
 subplot(5,1,5);
 plot(EGG_filter.time{1}, EGG_filter.trial{1}(3, :), 'r', 'LineWidth', 1);
-xlim([EGG_filter.time{1}(1) EGG_filter.time{1}(end)]);
 ax = gca;
-ax.FontSize = 16;
-ylabel('µV', 'FontSize', 17);
-xlabel('Time (seconds)', 'FontSize', 17);
+ax.XLim            = [EGG_filter.time{1}(1) EGG_filter.time{1}(end)];
+ax.FontSize        = 16;
+ax.XLabel.String   = 'Time (seconds)';
+ax.XLabel.FontSize = 17;
+ax.YLabel.String   = 'µV';
+ax.YLabel.FontSize = 17;
 title('Amplitude', 'FontSize', 25);
 
 end

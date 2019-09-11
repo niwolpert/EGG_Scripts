@@ -1,23 +1,17 @@
-function data_EGG = compute_filter_EGG(file_name, FFT_EGG, dsp_Fs, channel_labels)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Copyright Nicolai Wolpert, 2019%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Usage: EGG_filter = compute_filter_EGG(file_name, FFT_EGG, dsp_Fs);
-%Selects the channel with the strongest peak in the 0.033-0.67 Hz range
-%(specified in FFT_EGG), downsamples and filters the signal aroung the peak
-%frequency (also specified in FFT_EGG) and computes the analytic phase and
-%amplitude.
+function data_EGG = compute_filter_EGG(EGG_raw, FFT_EGG)
+% This function selects the channel with the strongest peak in the 0.033-0.67 Hz range
+% (specified in FFT_EGG), downsamples and filters the signal aroung the peak
+% frequency (also specified in FFT_EGG) and computes the analytic phase and
+% amplitude.
 %
-%Inputs:
-%   -file_name: String with the path and name of the raw data
-%   -FFT_EGG: Power spectrum data obtained by 'compute_FFT_EGG'
-%   -dsp_Fs: downsampling frequency in Hertz
-%   -channel_labels: Cell matrix with channel labels as strings
-%
-%Outputs:
-%   -data_EGG: Data structure containing raw (original) + filtered EGG,
-%   phase and amplitude
-%
+% Inputs
+%     EGG_raw         Fieldtrip structure with raw EGG data
+%     FFT_EGG         power spectrum obtained with 'compute_FFT_EGG.m'
+% 
+% Outputs
+%     data_EGG        data structure containing EGG raw signal, filtered signal, 
+%                     phase and amplitude
+% 
 % This function was written in Matlab version R2017b.
 %
 % This function make use of the fieldtrip toolbox, version 20170315
@@ -29,8 +23,7 @@ function data_EGG = compute_filter_EGG(file_name, FFT_EGG, dsp_Fs, channel_label
 % Neuroscience, vol. 2011, Article ID 156869, 9 pages, 2011. 
 % doi:10.1155/2011/156869.
 %
-% Copyright (C) 2009, Laboratoire de Neurosciences Cognitives, Nicolai 
-% Wolpert
+% Copyright (C) 2009, Laboratoire de Neurosciences Cognitives, Nicolai Wolpert
 % Email: Nicolai.Wolpert@ens.fr
 % 
 % DISCLAIMER:
@@ -42,27 +35,13 @@ function data_EGG = compute_filter_EGG(file_name, FFT_EGG, dsp_Fs, channel_label
 
 fprintf('\n###############\nFiltering EGG, extracting phase&amplitude...\n\n')
 
-% read in raw EGG data
-cfg                         = [];
-cfg.continuous              = 'yes';
-cfg.channel                 = channel_labels;
-cfg.dataset                 = file_name;
-EGG_orig                    = ft_preprocessing(cfg);
-
 % select EGG channel with maximum power
 cfg = [];
 cfg.channel         = FFT_EGG.max_chan{1};
-EGG_orig            = ft_selectdata(cfg, EGG_orig);
-
-% downsample data to specified frequency
-cfg = [];
-cfg.resamplefs = dsp_Fs;
-cfg.detrend    = 'no';
-cfg.demean     = 'no';
-EGG_dsp = ft_resampledata(cfg, EGG_orig);
+EGG_raw            = ft_selectdata(cfg, EGG_raw);
 
 % prepare the filter
-srate               = EGG_dsp.fsample;
+srate               = EGG_raw.fsample;
 center_frequency    = FFT_EGG.max_freq_max_chan;        
 bandwidth           = 0.015;
 transition_width    = 0.15;
@@ -80,21 +59,21 @@ idealresponse       = [ 0 0 1 1 0 0 ];
 filterweights       = fir2(filterOrder,ffreq,idealresponse);
 
 % filter
-EGG_filt = EGG_dsp;
+EGG_filt = EGG_raw;
 disp('Filtering EGG - this will take some time');
-EGG_filt.trial{1}   = filtfilt(filterweights,1,EGG_dsp.trial{1});
+EGG_filt.trial{1}   = filtfilt(filterweights,1,EGG_raw.trial{1});
 EGG_filt.label      = {'filtered'};
 
 % Hilbert-transform of the EGG
-EGG_phase = EGG_dsp;
+EGG_phase = EGG_raw;
 EGG_phase.trial{1}      = angle(hilbert(EGG_filt.trial{1}'))';
 EGG_phase.trial{1}(2,:) = abs(hilbert(EGG_filt.trial{1}'))';        
-EGG_phase.label      = {'phase', 'amplitude'};
+EGG_phase.label         = {'phase', 'amplitude'};
 
-% append filtered EGG and EGG phase to rest of data
-data_EGG = ft_appenddata([],EGG_dsp,EGG_phase,EGG_filt);
+% append filtered EGG and EGG phase to the data structure
+data_EGG = ft_appenddata([],EGG_raw,EGG_phase,EGG_filt);
 
-EEG_phase_degrees = data_EGG;
+EEG_phase_degrees       = data_EGG;
 EEG_phase_degrees.label = {'phase_degrees'};
 EEG_phase_degrees.trial = {radtodeg(data_EGG.trial{1}(2,:))};
 

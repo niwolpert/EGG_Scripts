@@ -1,20 +1,13 @@
-function [FFT_EGG, figure_fft] = compute_FFT_EGG(file_name, channel_labels)
-% USES FIELDTRIP + Version (link), specify functions, give ref of article
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Copyright Nicolai Wolpert, 2019%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Usage: [FFT_EGG, figure_fft] = compute_FFT_EGG(file_location, channel_labels);
-%Computes the EGG power spectrum for all channels and selects the channel
-%with the strongest peak between 0.033 and 0.067 Hz.
+function [FFT_EGG, figure_fft] = compute_FFT_EGG(EGG_raw)
+% This function computes the EGG power spectrum for all channels and selects the channel
+% with the strongest peak in the between 0.033 and 0.067 Hz.
 %
-%Inputs:
-%   -file_name: String with the path and name of the raw data
-%   -channel_labels: Cell matrix with channel labels as strings
-%
-%Outputs:
-%   -FFT_EGG: Data structure containing the power spectrum and fields for
-%   the name of the selected channel and peak frequency
-%   -figure_fft: Figure showing the power spectrum for all channels
+% Inputs
+%     EGG_raw         Fieldtrip structure with raw EGG data
+% 
+% Outputs
+%     FFT_EGG         data structure containing the power spectrums, selected channel and peak frequency
+%     figure_fft      figure showing the power spectrum for all channels
 %
 % This function was written in Matlab version R2017b.
 %
@@ -27,12 +20,11 @@ function [FFT_EGG, figure_fft] = compute_FFT_EGG(file_name, channel_labels)
 % Neuroscience, vol. 2011, Article ID 156869, 9 pages, 2011. 
 % doi:10.1155/2011/156869.
 %
-% Copyright (C) 2009, Laboratoire de Neurosciences Cognitives, Nicolai 
-% Wolpert
+% Copyright (C) 2009, Laboratoire de Neurosciences Cognitives, Nicolai Wolpert
 % Email: Nicolai.Wolpert@ens.fr
 % 
 % DISCLAIMER:
-% This code is provided without explicit or implied guarantee, and  without 
+% This code is provided without explicit or implicit guarantee, and without 
 % any form of technical support. The code is not intended for usage for 
 % clinical purposes. The functions are free to be used and can be modified 
 % and adapted, under the constraint of giving credit by citing the author's 
@@ -43,19 +35,12 @@ fprintf('\n###############\nEstimating power spectra...\n\n')
 % define the window inside which we search for the maximum peak
 window = [0.033 0.067];
 
-% read in raw EGG data
-cfg                         = [];
-cfg.dataset                 = file_name;
-cfg.continuous              = 'yes';
-cfg.channel                 = channel_labels;
-EGG_orig                    = ft_preprocessing(cfg);
-
 % cut data into trials by defining the length (in sec) of the data and the 
 % overlap between segments (ratio)
 cfg = [];
 cfg.length                  = 200;
 cfg.overlap                 = 0.75;
-EGG_trials                  = ft_redefinetrial(cfg, EGG_orig);
+EGG_trials                  = ft_redefinetrial(cfg, EGG_raw);
 
 %% Filtering
 
@@ -83,29 +68,28 @@ max_freq_indx           = max_freq_indx + low_freq_indx - 1;
 max_freq                = FFT_EGG.freq(max_freq_indx);
 
 % get electrode with maximum power
-[max_pow_max_chan ,max_chan_indx]         = max(max_pow);
+[max_pow_max_chan ,max_chan_indx] = max(max_pow);
 
 max_freq_max_chan = max_freq(max_chan_indx);
 
 % get name of electrode with maximum power
 max_chan = FFT_EGG.label(max_chan_indx);
 
-% note all parameters in data matrix
-FFT_EGG.max_chan     = {max_chan};
-FFT_EGG.max_freq     = max_freq;
-FFT_EGG.max_chan_indx = max_chan_indx;
+% store all parameters in data matrix
+FFT_EGG.max_chan          = {max_chan};
+FFT_EGG.max_freq          = max_freq;
+FFT_EGG.max_chan_indx     = max_chan_indx;
 FFT_EGG.max_freq_max_chan = max_freq_max_chan;
-FFT_EGG.max_pow_max_chan = max_pow_max_chan;
+FFT_EGG.max_pow_max_chan  = max_pow_max_chan;
 
 % show the power spectrum
-window = [0.033 0.067];
+window     = [0.033 0.067];
 figure_fft = figure('units','normalized','outerposition',[0 0 1 1]);
-colors = {[1 0 1];  [1 0 0]; [0 1 0];  [0 0 1]; [1 0.5 0]; [0.5 0 0]; [0 1 1]};   % 1. pink 2. red 3. green 4. dark blue 5. orange 6. dark red/ brown 7. light blue
-nchannels = length(FFT_EGG.label);
+colors     = {[1 0 1];  [1 0 0]; [0 1 0];  [0 0 1]; [1 0.5 0]; [0.5 0 0]; [0 1 1]};   % 1. pink 2. red 3. green 4. dark blue 5. orange 6. dark red/ brown 7. light blue
 for nchan=1:length(FFT_EGG.label)
     hold on;
     % mark selected channel
-    if nchan==max_chan_indx
+    if nchan == max_chan_indx
         plot(FFT_EGG.freq, FFT_EGG.powspctrm(nchan, :), 'Color', colors{nchan}, 'LineWidth', 2.5);
     else
         plot(FFT_EGG.freq, FFT_EGG.powspctrm(nchan, :), 'Color', colors{nchan}, 'LineWidth', 1.5);
