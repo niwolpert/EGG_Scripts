@@ -37,7 +37,8 @@ _to_my_matlab_path/
 provided. Download the data sets and specify the path and name in Script_EGG_main,
 as well as the path to the fieldtrip toolbox.
 
-3. Call 'compute_FFT_EGG'
+3. Call 'compute_FFT_EGG'.
+
 Input: Raw EGG data in fieldtrip format
 This function computes a power spectrum for all the channels and outputs a fieldtrip 
 structure containing the power spectrum.
