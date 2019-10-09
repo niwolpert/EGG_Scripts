@@ -19,7 +19,7 @@ The aim of these scripts is to help the reader getting started with processing
 and analyzing the EGG signal. It provides some functions to filter and visualize
 the signal and detect artifacts.
 We also provide example EGG data that can be used in these scripts (Names: 
-'Example_data1.bdf', 'Example_data2.bdf' and 'Example_data3.bdf')
+'EGG_raw_example1.mat', 'EGG_raw_example2.mat' and 'EGG_raw_example3.mat').
 EGG data that are loaded in this script have to be in fieldtrip format (e.g.
 the output of 'ft_preprocessing'), without any highpass-filter and already
 re-referenced.
