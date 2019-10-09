@@ -38,7 +38,6 @@ provided. Download the data sets and specify the path and name in Script_EGG_mai
 as well as the path to the fieldtrip toolbox.
 
 3. Call 'compute_FFT_EGG'.
-
 Input: Raw EGG data in fieldtrip format
 This function computes a power spectrum for all the channels and outputs a fieldtrip 
 structure containing the power spectrum.
@@ -47,7 +46,7 @@ highlighting the normogastric range (0.033-0.067 Hz). The channel with the
 maximal power in normogastric range is highlighted with a star at the frequency
 of maximum power.
 
-4. Call 'compute_filter_EGG'
+4. Call 'compute_filter_EGG'.
 Input: Raw EGG data, power spectrum (fieldtrip structure, output from 
 'compute_FFT_EGG')
 This function filters the EGG and computes the amplitude and phase of the EGG, 
@@ -55,17 +54,17 @@ on the channel with the highest peak in the power spectrum in the normogastric
 range. It outputs a fieldtrip structure with the filtered signal, amplitude and 
 phase.
 
-5. Call ‘plot_EGG_visual_inspection'
+5. Call ‘plot_EGG_visual_inspection'. 
 Input: Filtered signal (output from 'compute_filter_EGG')
 This function creates a plot with the raw signal (first row), filtered signal
 (second row), phase time series (third row) and amplitude (fourth row).
 
-6. Call 'show_prop_normogastria'
+6. Call 'show_prop_normogastria'. 
 Input: Filtered signal (output from 'compute_filter_EGG')
 This function creates a plot with a histogram of cycle durations, with dotted
 red lines marking the mean +/- 3 standard deviations.
 
-7. Call 'detect_EGG_artifacts'
+7. Call 'detect_EGG_artifacts'. 
 Input: Filtered signal (output from 'compute_filter_EGG')
 This function looks for artifacted cycles in the phase time series. The two 
 criteria for a cycle to be considered as artifact are: 1. A non-monotonous
