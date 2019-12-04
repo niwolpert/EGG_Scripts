@@ -2,15 +2,20 @@ EGG Code - Nicolai Wolpert (2019)
 =======================
 
 
-This Matlab code is intended to accompany the paper: Wolpert, N. et al. (2019).
+This Matlab code is intended to accompany the paper: Wolpert, N., Rebollo, I.,
+Tallon-Baudry, C. (2019). Electrogastrography for psychophysiological 
+research: practical guidelines and normative data.
 
-Copyright (C) 2019, Laboratoire de Neurosciences Cognitives, Nicolai Wolpert
-Email: Nicolai.Wolpert@ens.fr
+Copyright (C) 2019, Laboratoire de Neurosciences Cognitives, Nicolai Wolpert, 
+Ignacio Rebello & Catherine Tallon-Baudry
+Email: nicolaiwolpert@gmail.com
 
+DISCLAIMER:
 This code is provided without explicit or implicit guarantee, and without any 
-form of technical support. The code is not intended for usage for clinical 
-purposes. The functions are free to be used and can be modified and adapted,
-under the constraint of giving credit by citing the author's name.
+form of technical support. The code is not intended to be used for clinical 
+purposes. The functions are free to use and can be redistributed, modified 
+and adapted, under the terms of the CC BY-NC-SA version of creative commons 
+license (see <https://creativecommons.org/licenses/>).
 
 Purpose
 -------------
