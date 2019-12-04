@@ -2,7 +2,7 @@ EGG Code - Nicolai Wolpert (2019)
 =======================
 
 
-This Matlab code is intended to accompany the paper: Wolpert, N., Rebollo, I.,
+When using this function in any published study, please cite: Wolpert, N., Rebollo, I.,
 Tallon-Baudry, C. (2019). Electrogastrography for psychophysiological 
 research: practical guidelines and normative data.
 
