@@ -1,6 +1,7 @@
 function show_prop_normogastria(EGG_filtered)
 % This function plots the histogram of cycle duration, with 
-% dotted red lines marking the mean +/- 3 standard deviations.
+% dotted red lines marking the limits of normogastric range 
+% (0.033-0.067 Hz or 2-4 cpm).
 %
 % Inputs
 %     EGG_filtered  filtered EGG signal (output from 'compute_filter_EGG.m')
