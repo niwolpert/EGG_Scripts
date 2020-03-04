@@ -67,13 +67,19 @@ This function creates a plot with the raw signal (first row), filtered signal
 (second row), phase time series (third row) and amplitude (fourth row).
 Output: plot
 
-6. Call 'show_prop_normogastria'. 
+6. Call 'compute_std_cycle_duration'.
+Input: Filtered signal (output from 'compute_filter_EGG')
+This function computes the standard deviation of cycle duration for the
+recording which is an estimate of the regularity of the phase.
+Output: Standard deviation of cycle duration
+
+7. Call 'show_prop_normogastria'. 
 Input: Filtered signal (output from 'compute_filter_EGG')
 This function creates a plot with a histogram of cycle durations, with dotted
 red lines marking the mean +/- 3 standard deviations.
 Output: plot
 
-7. Call 'detect_EGG_artifacts'. 
+8. Call 'detect_EGG_artifacts'. 
 Input: Filtered signal (output from 'compute_filter_EGG')
 This function looks for artifacted cycles in the phase time series. The two 
 criteria for a cycle to be considered as artifact are: 1. A non-monotonous
