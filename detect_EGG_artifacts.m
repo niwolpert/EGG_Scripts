@@ -12,8 +12,9 @@ function [art_def, figure_EGG_artifacts] = detect_EGG_artifacts(EGG_filter)
 %     figure_EGG_cycle_lengths    figure showing the distribution of cycle length
 % 
 % When using this function in any published study, please cite: Wolpert, 
-% N., Rebollo, I., Tallon-Baudry, C. (2019). Electrogastrography for 
-% psychophysiological research: practical guidelines and normative data.
+% N., Rebollo, I., Tallon-Baudry, C. (2020). Electrogastrography for 
+% psychophysiological research: practical considerations, analysis pipeline 
+% and normative data in a large sample. Psychophysiology (in press)
 %
 % This function was written in Matlab version R2017b.
 %
@@ -57,7 +58,7 @@ plot(EGG_filter.time{1}, EGG_filter.trial{1}(1,:));
 ax                 = gca;
 ax.FontSize        = 16;
 ax.XLim            = [EGG_filter.time{1}(1) EGG_filter.time{1}(end)];
-ax.YLabel.String   = 'µV';
+ax.YLabel.String   = 'ÂµV';
 ax.YLabel.FontSize = 17;
 title('Raw signal', 'FontSize', 25);
 
@@ -68,7 +69,7 @@ xlim([EGG_filter.time{1}(1) EGG_filter.time{1}(end)]);
 ax = gca;
 ax.FontSize = 16;
 xlabel('Time (seconds)', 'FontSize', 17);
-ylabel('µV', 'FontSize', 17);
+ylabel('ÂµV', 'FontSize', 17);
 title('Filtered', 'FontSize', 25);
 
 % Plot signal phase in rads
@@ -86,7 +87,7 @@ plot(EGG_filter.time{1}, EGG_filter.trial{1}(3,:));
 xlim([EGG_filter.time{1}(1) EGG_filter.time{1}(end)]);
 ax = gca;
 ax.FontSize = 16;
-ylabel('µV', 'FontSize', 17);
+ylabel('ÂµV', 'FontSize', 17);
 xlabel('Time (seconds)', 'FontSize', 17);
 title('Amplitude', 'FontSize', 25);
 
