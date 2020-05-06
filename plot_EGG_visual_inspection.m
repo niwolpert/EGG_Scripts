@@ -9,8 +9,9 @@ function figure_EGG_filtered = plot_EGG_visual_inspection(EGG_filtered)
 %                         phase and amplitude
 %
 % When using this function in any published study, please cite: Wolpert, 
-% N., Rebollo, I., Tallon-Baudry, C. (2019). Electrogastrography for 
-% psychophysiological research: practical guidelines and normative data.
+% N., Rebollo, I., Tallon-Baudry, C. (2020). Electrogastrography for 
+% psychophysiological research: practical considerations, analysis pipeline 
+% and normative data in a large sample. Psychophysiology (in press)
 %
 % This function was written in Matlab version R2017b.
 %
@@ -44,7 +45,7 @@ plot(EGG_filtered.time{1}, EGG_filtered.trial{1}(1, :));
 ax = gca;
 ax.XLim            = [EGG_filtered.time{1}(1) EGG_filtered.time{1}(end)];
 ax.FontSize        = 16;
-ax.YLabel.String   = 'µV';
+ax.YLabel.String   = 'ÂµV';
 ax.YLabel.FontSize = 17;
 title('Raw signal', 'FontSize', 25);
 
@@ -54,7 +55,7 @@ plot(EGG_filtered.time{1}, EGG_filtered.trial{1}(4, :), 'g', 'LineWidth', 1);
 ax = gca;
 ax.XLim            = [EGG_filtered.time{1}(1) EGG_filtered.time{1}(end)];
 ax.FontSize        = 16;
-ax.YLabel.String   = 'µV';
+ax.YLabel.String   = 'ÂµV';
 ax.YLabel.FontSize = 17;
 title('Filtered signal', 'FontSize', 25);
 
@@ -76,7 +77,7 @@ ax.XLim            = [EGG_filtered.time{1}(1) EGG_filtered.time{1}(end)];
 ax.FontSize        = 16;
 ax.XLabel.String   = 'Time (seconds)';
 ax.XLabel.FontSize = 17;
-ax.YLabel.String   = 'µV';
+ax.YLabel.String   = 'ÂµV';
 ax.YLabel.FontSize = 17;
 title('Amplitude', 'FontSize', 25);
 
