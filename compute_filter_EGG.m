@@ -13,8 +13,9 @@ function data_EGG = compute_filter_EGG(EGG_raw, FFT_EGG)
 %                     signal, phase in radians and degrees, and amplitude
 % 
 % When using this function in any published study, please cite: Wolpert, 
-% N., Rebollo, I., Tallon-Baudry, C. (2019). Electrogastrography for 
-% psychophysiological research: practical guidelines and normative data.
+% N., Rebollo, I., Tallon-Baudry, C. (2020). Electrogastrography for 
+% psychophysiological research: practical considerations, analysis pipeline 
+% and normative data in a large sample. Psychophysiology (in press)
 %
 % This function was written in Matlab version R2017b.
 %
