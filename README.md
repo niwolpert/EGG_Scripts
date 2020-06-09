@@ -2,8 +2,7 @@ EGG Code - Nicolai Wolpert (2019)
 =======================
 
 
-When using this function in any published study, please cite: Wolpert, N., Rebollo, I.,
-Tallon-Baudry, C. (2020). Electrogastrography for psychophysiological research: practical considerations, analysis pipeline and normative data in a large sample. Psychophysiology (in press)
+Wolpert, N, Rebollo, I, Tallon‐Baudry, C. Electrogastrography for psychophysiological research: Practical considerations, analysis pipeline, and normative data in a large sample. Psychophysiology. 2020; 00:e13599.
 
 Copyright (C) 2019, Laboratoire de Neurosciences Cognitives, Nicolai Wolpert, 
 Ignacio Rebello & Catherine Tallon-Baudry
