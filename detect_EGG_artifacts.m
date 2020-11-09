@@ -11,10 +11,10 @@ function [art_def, figure_EGG_artifacts] = detect_EGG_artifacts(EGG_filter)
 %     figure_EGG_artifacts        figure showing the artifacts marked in the signal
 %     figure_EGG_cycle_lengths    figure showing the distribution of cycle length
 % 
-% When using this function in any published study, please cite: Wolpert, 
-% N., Rebollo, I., Tallon-Baudry, C. (2020). Electrogastrography for 
-% psychophysiological research: practical considerations, analysis pipeline 
-% and normative data in a large sample. Psychophysiology (in press)
+% When using this function in any published study, please cite: 
+% Wolpert, N, Rebollo, I, Tallon‐Baudry, C. Electrogastrography for psychophysiological 
+% research: Practical considerations, analysis pipeline, and normative data in a large 
+% sample. Psychophysiology. 2020; 57:e13599. https://doi.org/10.1111/psyp.13599 
 %
 % This function was written in Matlab version R2017b.
 %
