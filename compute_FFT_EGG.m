@@ -10,10 +10,10 @@ function [FFT_EGG, figure_fft] = compute_FFT_EGG(EGG_raw)
 %     FFT_EGG         data structure containing the power spectra, selected channel and peak frequency
 %     figure_fft      figure showing the power spectrum for all channels
 %
-% When using this function in any published study, please cite: Wolpert, 
-% N., Rebollo, I., Tallon-Baudry, C. (2020). Electrogastrography for 
-% psychophysiological research: practical considerations, analysis pipeline 
-% and normative data in a large sample. Psychophysiology (in press)
+% When using this function in any published study, please cite: 
+% Wolpert, N, Rebollo, I, Tallon‐Baudry, C. Electrogastrography for psychophysiological research: 
+% Practical considerations, analysis pipeline, and normative data in a large sample. Psychophysiology. 
+% 2020; 57:e13599. https://doi.org/10.1111/psyp.13599 
 %
 % This function was written in Matlab version R2017b.
 %
