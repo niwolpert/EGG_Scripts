@@ -8,10 +8,10 @@ function figure_EGG_filtered = plot_EGG_visual_inspection(EGG_filtered)
 %     figure_EGG_filtered figure showing EGG raw signal, filtered signal,
 %                         phase and amplitude
 %
-% When using this function in any published study, please cite: Wolpert, 
-% N., Rebollo, I., Tallon-Baudry, C. (2020). Electrogastrography for 
-% psychophysiological research: practical considerations, analysis pipeline 
-% and normative data in a large sample. Psychophysiology (in press)
+% When using this function in any published study, please cite: 
+% Wolpert, N, Rebollo, I, Tallon‐Baudry, C. Electrogastrography for psychophysiological 
+% research: Practical considerations, analysis pipeline, and normative data in a large 
+% sample. Psychophysiology. 2020; 57:e13599. https://doi.org/10.1111/psyp.13599 
 %
 % This function was written in Matlab version R2017b.
 %
